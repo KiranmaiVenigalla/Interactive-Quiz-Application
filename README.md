@@ -29,3 +29,5 @@ From a technical perspective, the quiz questions and answers can be stored in an
 In conclusion, the Interactive Quiz Application serves as a practical demonstration of JavaScript capabilities in building real-time, interactive web applications. It not only showcases skills in front-end development but also highlights the importance of user engagement and educational design. This project provides a solid foundation for creating more advanced educational tools and can be further enhanced with additional technologies and features to suit specific learning needs.
 
 OUTPUT :
+
+[Image1](https://github.com/user-attachments/assets/64833af8-c00f-47fb-89c1-1e61b17a0088)
