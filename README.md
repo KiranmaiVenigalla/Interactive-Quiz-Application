@@ -26,10 +26,6 @@ Another important component of the Interactive Quiz Application is its clean and
 
 From a technical perspective, the quiz questions and answers can be stored in an array or fetched from an external file or API. The app utilizes event-driven programming to respond to user actions, such as clicking on an answer or submitting a quiz. This structure makes the application flexible and easy to extend with additional features, such as timer-based quizzes, difficulty levels, or user authentication.
 
-OUTPUT :
-
-
-
 In conclusion, the Interactive Quiz Application serves as a practical demonstration of JavaScript capabilities in building real-time, interactive web applications. It not only showcases skills in front-end development but also highlights the importance of user engagement and educational design. This project provides a solid foundation for creating more advanced educational tools and can be further enhanced with additional technologies and features to suit specific learning needs.
 
-
+OUTPUT :
