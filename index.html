@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interactive Quiz</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      background: rgb(233, 181, 213);
+      margin: 0;
+      padding: 0;
+    }
+    form {
+      width: 50%;
+      border-radius: 50px 5px;
+      margin: 0 auto;
+      background-image: linear-gradient(45deg,rgb(236, 212, 212),powderblue,rgb(108, 108, 148));
+      border: none;
+      box-shadow: 10px 10px 10px gray;
+    }
+    .page {
+      display: none;
+      padding: 40px 20px;
+    }
+    .active {
+      display: block;
+    }
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      color: antiquewhite;
+      background-color: rgb(40, 60, 238);
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .option {
+      display: block;
+      padding: 10px;
+      background: rgb(255, 255, 255);
+      margin: 10px auto;
+      border-radius: 10px;
+      width: 300px;
+      cursor: pointer;
+    }
+    .green { background: green; color: white; }
+    .orange { background: orange; color: white; }
+    .red { background: red; color: white; }
+    .gift-icons {
+      font-size: 60px;
+      animation: float 2s infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+   
+ <!--login details -->
+ <form onsubmit="afterLogin(); return false;">
+  <div id="login" class="page active">
+    <h1><u><b><i>Login Form</i></b></u></h1>
+    <h2>Enter your Details</h2>
+    <label for="name"><b>Name: </b></label>
+    <input id="name" type="text" placeholder="Enter Your Name" required><br><br>
+    <label for="rollno"><b>Roll No: </b></label>
+    <input id="rollno" type="number" placeholder="Enter Your Roll Number" required><br><br>
+    <button>Submit</button>
+  </div>
+</form>
+
+  <!-- Welcome Page -->
+  <div id="welcome" class="page">
+    <h1>Welcome to Interactive Quiz</h1>
+    <h2>Let's start your journey!</h2>
+    <button onclick="showPage('start')">Let's Go 🚀</button>
+  </div>
+
+  <!-- Start Page -->
+  <div id="start" class="page">
+    <h2>Ready to Start the Quiz?</h2>
+    <button onclick="startQuiz()">Start Quiz</button>
+  </div>
+
+  <!-- Quiz Page -->
+  <div id="quiz" class="page">
+    <div id="questionBox"></div>
+    <div id="optionsBox"></div>
+  </div>
+
+  <!-- Score Page -->
+  <div id="scorePage" class="page">
+    <h2>Your Score: <span id="scoreValue"></span>/10</h2>
+    <h3 id="percentageText"></h3>
+    <button id="resultBtn" onclick="handleResultAction()"></button>
+  </div>
+
+  <!-- Gift Page -->
+  <div id="giftPage" class="page">
+    <h2>Congratulations! 🎉</h2>
+    <button style="background: #1ab977;" onclick="showPage('finalPage')"><h1>Let's Take Your Gift 🎁</h1</button>
+  </div>
+
+  <!-- Final Celebration Page -->
+  <div id="finalPage" class="page">
+    <h2>🎈✨🎁💖😊</h2>
+    <div class="gift-icons"><h1>🎉🎈🎁💖😊</h1></div>
+    <button onclick="location.reload()"><h1>Thank You For Your Valuable Time 🙏</h1></button>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "What does HTML stand for ?",
+        options: ["Hyper Text Markup Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language","Hydric Test Of Mediciens in Laboratory"],
+        answer: "Hyper Text Markup Language"
+      },
+      {
+        question: "Which HTML tag is used to define an internal style sheet ?",
+        options: ["script","style","css","html"],
+        answer: "style"
+      },
+       {
+        question: "What is the use of HTML ?",
+        options: ["Styling the web page","Adding interactive to web pages ","Study of web Pages","Structuring the content of Web pages"],
+        answer: "Structuring the content of Web pages"
+      },
+      {
+        question: "Which property is used in CSS for text color ?",
+        options: ["background-color", "color", "painting", "font-style"],
+        answer: "color"
+      },
+      {
+        question: "Which CSS property controls the text size ?",
+        options: ["font-style", "font-size", "text-size","text-style"],
+        answer: "font-size"
+      },
+      {
+        question: "What does CSS stand for ?",
+        options: ["Creative Style Sheets", "Cascading Style Sheets","Computer Science System",  "Computer Style Sheets"],
+        answer: "Cascading Style Sheets"
+      },
+      {
+        question: "Which tag is used to insert JavaScript into HTML ?",
+        options: ["script", "js", "javascript","style"],
+        answer: "script"
+      },
+      {
+        question: "Which operator is used to assign a value to a variable ?",
+        options: ["+", "*", "=", "-"],
+        answer: "="
+      },
+      {
+        question: "Which symbol is used for comments in JavaScript ?",
+        options: ["//", "/* */", "#", "*#"],
+        answer: "//"
+      },
+      {
+        question: "Which of the following is a Frontend Web Development ?",
+        options: ["Python", "SQL", "HTML", "Java"],
+        answer: "HTML"
+      }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+      function afterLogin(){
+        console.log("Entered into JS")
+        showPage('welcome');
+    }
+
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function startQuiz() {
+      current = 0;
+      score = 0;
+      showPage('quiz');
+      loadQuestion();
+    }
+
+    function loadQuestion() {
+      const q = questions[current];
+      document.getElementById('questionBox').innerHTML = `<h3>${q.question}</h3>`;
+      const optionsHtml = q.options.map(opt => `<div class="option" onclick="checkAnswer('${opt}')">${opt}</div>`).join("");
+      document.getElementById('optionsBox').innerHTML = optionsHtml;
+    }
+
+    function checkAnswer(selected) {
+      if (selected === questions[current].answer) {
+        score++;
+      }
+      current++;
+      if (current < questions.length) {
+        loadQuestion();
+      } else {
+        showScore();
+      }
+    }
+
+    function showScore() {
+      showPage('scorePage');
+      const percentage = (score / questions.length) * 100;
+      document.getElementById('scoreValue').textContent = score;
+      document.getElementById('percentageText').textContent = `You scored ${percentage}%`;
+
+      const resultBtn = document.getElementById('resultBtn');
+
+      if (percentage === 100) {
+        resultBtn.textContent = "🎉 Congrats!";
+        resultBtn.className = "green";
+      } else if (percentage >= 50) {
+        resultBtn.textContent = "Don't Worry! Retake Quiz";
+        resultBtn.className = "orange";
+      } else {
+        resultBtn.textContent = "Let's Take Another Attempt";
+        resultBtn.className = "red";
+      }
+    }
+    
+    function handleResultAction() {
+      const percentage = (score / questions.length) * 100;
+      if (percentage === 100) {
+        showPage('giftPage');
+      } else {
+        startQuiz();
+      }
+    }
+  </script>
+  
+</body>
+</html>
