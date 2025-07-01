@@ -33,3 +33,17 @@ OUTPUT :
 ![Image1](https://github.com/user-attachments/assets/64833af8-c00f-47fb-89c1-1e61b17a0088)
 
 ![Image](https://github.com/user-attachments/assets/65f81ff8-0280-4231-8be9-1d4b23385335)
+
+![Image](https://github.com/user-attachments/assets/2104fae6-3aa3-4d59-9bfc-04f8dab79244)
+
+![Image](https://github.com/user-attachments/assets/d01deea7-4ddd-4d77-b9bc-f7d0c7f79879)
+
+![Image](https://github.com/user-attachments/assets/44f8955b-acd6-4585-bc85-6cf6d38b24fb)
+
+![Image](https://github.com/user-attachments/assets/8b82d3fc-b2b6-45a4-84a1-715f9c09b95d)
+
+![Image](https://github.com/user-attachments/assets/5ddc4970-486b-44b5-ad7e-3e6633e105e9)
+
+![Image](https://github.com/user-attachments/assets/7daf4c06-d8b9-4b51-9984-1e59e982bec3)
+
+![Image](https://github.com/user-attachments/assets/9ce22cbb-77ab-4916-9496-81ea180a240a)
